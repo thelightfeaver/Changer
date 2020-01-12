@@ -1,5 +1,6 @@
 import 'package:changer/src/Model/ChangeCoin.dart';
 import 'package:changer/src/Model/Money.dart';
+import 'package:changer/src/Util/Util.dart';
 import 'package:changer/src/bloc/MoneyBloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -40,6 +41,9 @@ class _Changer extends State<Changer>
 
 class MoneyField extends StatefulWidget
 {
+  
+  
+
   @override
   _MoneyField createState() => _MoneyField();
 
@@ -50,15 +54,52 @@ class _MoneyField extends State<MoneyField>
   MoneyBloc _moneyBloc = new MoneyBloc();
   
   TextEditingController _controllerCounterCoin = new TextEditingController(text: "1");
-
+  List<Money> monies = [Money(country:'AFN'),Money(country:'XCD'),Money(country:'AUD'),Money(country:'BDT'),
+                        Money(country:'XOF'),Money(country:'BRL'),Money(country:'KHR'),Money(country:'XAF'),
+                        Money(country:'CUP'),Money(country:'EUR'),Money(country:'GEL'),Money(country:'HTG'),
+                        Money(country:'INR'),Money(country:'ILS'),Money(country:'KZT'),Money(country:'KWD'),
+                        Money(country:'LSL'),Money(country:'MYR'),Money(country:'MUR'),Money(country:'MNT'),
+                        Money(country:'MMK'),Money(country:'XPF'),Money(country:'NOK'),Money(country:'PGK'),
+                        Money(country:'RWF'),Money(country:'WST'),Money(country:'RSD'),Money(country:'SEK'),
+                        Money(country:'TZS'),Money(country:'TND'),Money(country:'UAH'),Money(country:'UZS'),
+                        Money(country:'YER'),Money(country:'DZD'),Money(country:'ARS'),Money(country:'AZN'),
+                        Money(country:'BYN'),Money(country:'BOB'),Money(country:'BGN'),Money(country:'CAD'),
+                        Money(country:'CNY'),Money(country:'CRC'),Money(country:'CZK'),Money(country:'USD'),
+                        Money(country:'GHS'),Money(country:'GNF'),Money(country:'HKD'),Money(country:'IRR'),
+                        Money(country:'JMD'),Money(country:'LAK'),Money(country:'LYD'),Money(country:'MKD'),
+                        Money(country:'NIO'),Money(country:'PKR'),Money(country:'PEN'),Money(country:'QAR'),
+                        Money(country:'STD'),Money(country:'SLL'),Money(country:'SOS'),Money(country:'SDG'),
+                        Money(country:'SYP'),Money(country:'TMT'),Money(country:'GBP'),Money(country:'VEF'),
+                        Money(country:'AMD'),Money(country:'BSD'),Money(country:'BAM'),Money(country:'KYD'),
+                        Money(country:'COP'),Money(country:'DKK'),Money(country:'EGP'),Money(country:'ETB'),
+                        Money(country:'GIP'),Money(country:'HUF'),Money(country:'IQD'),Money(country:'JPY'),
+                        Money(country:'KPW'),Money(country:'LVL'),Money(country:'CHF'),Money(country:'MGA'),
+                        Money(country:'MDL'),Money(country:'MAD'),Money(country:'NPR'),Money(country:'PHP'),
+                        Money(country:'RON'),Money(country:'SAR'),Money(country:'SGD'),Money(country:'ZAR'),
+                        Money(country:'SRD'),Money(country:'TWD'),Money(country:'TOP'),Money(country:'VND'),
+                        Money(country:'ALL'),Money(country:'BBD'),Money(country:'BTN'),Money(country:'BND'),
+                        Money(country:'CLP'),Money(country:'CDF'),Money(country:'DOP'),Money(country:'ERN'),
+                        Money(country:'GTQ'),Money(country:'HNL'),Money(country:'IDR'),Money(country:'KES'),
+                        Money(country:'KGS'),Money(country:'LRD'),Money(country:'MOP'),Money(country:'MVR'),
+                        Money(country:'MXN'),Money(country:'NAD'),Money(country:'NZD'),Money(country:'OMR'),
+                        Money(country:'PYG'),Money(country:'SHP'),Money(country:'SCR'),Money(country:'SBD'),
+                        Money(country:'LKR'),Money(country:'THB'),Money(country:'TRY'),Money(country:'AED'),
+                        Money(country:'VUV'),Money(country:'ZMW'),Money(country:'AOA'),Money(country:'AWG'),
+                        Money(country:'BHD'),Money(country:'BZD'),Money(country:'BWP'),Money(country:'BIF'),
+                        Money(country:'KMF'),Money(country:'HRK'),Money(country:'DJF'),Money(country:'FJD'),
+                        Money(country:'GMD'),Money(country:'GYD'),Money(country:'ISK'),Money(country:'JOD'),
+                        Money(country:'KRW'),Money(country:'LBP'),Money(country:'MWK'),Money(country:'MRO'),
+                        Money(country:'MZN'),Money(country:'NGN'),Money(country:'PAB'),Money(country:'PLN'),
+                        Money(country:'RUB'),Money(country:'SZL'),Money(country:'TJS'),Money(country:'TTD'),
+                        Money(country:'UGX'),Money(country:'UYU')];
+// change method get countries
   Money  _fromCoin ;
   Money  _toCoin;
-
-  List<Money> monies = [
   
-    Money(country: "USD"),
-    Money(country: "EUR")
-  ];
+  // static Future<List<Money>> Curries() async {
+  //    List<Money> tempmonies =  await Util.GetCurries();
+  //    return tempmonies;
+  // }
 
   @override
   void dispose() {
