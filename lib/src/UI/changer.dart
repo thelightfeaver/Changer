@@ -1,6 +1,5 @@
 import 'package:changer/src/Model/ChangeCoin.dart';
 import 'package:changer/src/Model/Money.dart';
-import 'package:changer/src/Util/Util.dart';
 import 'package:changer/src/bloc/MoneyBloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -93,9 +92,10 @@ class _MoneyField extends State<MoneyField>
                         Money(country:'RUB'),Money(country:'SZL'),Money(country:'TJS'),Money(country:'TTD'),
                         Money(country:'UGX'),Money(country:'UYU')];
 // change method get countries
+  // Money  _fromCoin = new Money(country: "");
+  // Money  _toCoin = new Money(country: "");
   Money  _fromCoin ;
-  Money  _toCoin;
-  
+  Money  _toCoin ;
   // static Future<List<Money>> Curries() async {
   //    List<Money> tempmonies =  await Util.GetCurries();
   //    return tempmonies;
@@ -263,21 +263,23 @@ class _MoneyField extends State<MoneyField>
         child: Text("changer".toUpperCase(),textDirection: TextDirection.ltr,style:TextStyle(fontSize:15.0)),
         onPressed: ()
         {
-          if(_fromCoin.country == "" || _toCoin.country == "" || _fromCoin.country == _toCoin.country )
+         
+          if(_fromCoin != null  && _toCoin != null  && _fromCoin.country != _toCoin.country )
           {
-              _showDialog();
-             debugPrint("Same ");
-          }
-          else
-          {
-            if(double.tryParse(_controllerCounterCoin.text.toString()) >= 1)
+            debugPrint("si");
+              if(double.tryParse(_controllerCounterCoin.text.toString()) >= 1)
             {
               _moneyBloc.sendData.add(ChangeCoin( 
                 fromCoin: _fromCoin,
-                toCoin:_toCoin,countCoin1: 
-                double.parse(_controllerCounterCoin.text.toString())
+                toCoin:_toCoin,
+                countCoin1: double.parse(_controllerCounterCoin.text.toString())
               ));
             }
+          }
+          else
+          {
+            debugPrint("si");
+            _showDialog("Alert","Select Coin!");
             
           }
         },
@@ -285,19 +287,22 @@ class _MoneyField extends State<MoneyField>
     );
   }
 
-  void _showDialog()
+  void _showDialog(String title,String body)
   {
+    debugPrint(title+body);
     showDialog(
       context:context,
       builder: (BuildContext ctx)
       {
         return AlertDialog(
-          title: Text("Alert"),
-          content: Text("Change Country")
+          title: Text(title),
+          content: Text(body)
         );
       }
     );
   }
+
+  
 
 }
 

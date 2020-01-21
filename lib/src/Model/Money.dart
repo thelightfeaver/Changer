@@ -1,5 +1,5 @@
 class Money
 {
-  String country;
+  String country ;
   Money({this.country});
 }
