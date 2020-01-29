@@ -1,5 +1,6 @@
 import 'package:changer/src/Model/ChangeCoin.dart';
 import 'package:changer/src/Model/Money.dart';
+import 'package:changer/src/Util/Util.dart';
 import 'package:changer/src/bloc/MoneyBloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -50,8 +51,9 @@ class MoneyField extends StatefulWidget
 
 class _MoneyField extends State<MoneyField>
 {
+  Util _util = new Util();
   MoneyBloc _moneyBloc = new MoneyBloc();
-  
+  // change method get countries
   TextEditingController _controllerCounterCoin = new TextEditingController(text: "1");
   List<Money> monies = [Money(country:'AFN'),Money(country:'XCD'),Money(country:'AUD'),Money(country:'BDT'),
                         Money(country:'XOF'),Money(country:'BRL'),Money(country:'KHR'),Money(country:'XAF'),
@@ -91,15 +93,11 @@ class _MoneyField extends State<MoneyField>
                         Money(country:'MZN'),Money(country:'NGN'),Money(country:'PAB'),Money(country:'PLN'),
                         Money(country:'RUB'),Money(country:'SZL'),Money(country:'TJS'),Money(country:'TTD'),
                         Money(country:'UGX'),Money(country:'UYU')];
-// change method get countries
-  // Money  _fromCoin = new Money(country: "");
-  // Money  _toCoin = new Money(country: "");
+
+  
   Money  _fromCoin ;
   Money  _toCoin ;
-  // static Future<List<Money>> Curries() async {
-  //    List<Money> tempmonies =  await Util.GetCurries();
-  //    return tempmonies;
-  // }
+  
 
   @override
   void dispose() {
@@ -109,6 +107,7 @@ class _MoneyField extends State<MoneyField>
   @override
   Widget build(BuildContext ctx)
   {
+
     return Container(
       margin: EdgeInsets.only(left:15.0,right: 15.0,top:15.0),
       padding: EdgeInsets.all(15.0),
@@ -125,7 +124,7 @@ class _MoneyField extends State<MoneyField>
         children: <Widget>[ 
           
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             
             children: <Widget>[
               _selectCoin( 1),
@@ -154,7 +153,7 @@ class _MoneyField extends State<MoneyField>
                 fontSize: 20.0,
             ),
             keyboardType: TextInputType.number,
-            textAlign: TextAlign.right,
+            textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
             decoration: InputDecoration(
               counterText: "",
@@ -169,7 +168,7 @@ class _MoneyField extends State<MoneyField>
           ),
           StreamBuilder<ChangeCoin>(
             stream: _moneyBloc.changerStream,
-            initialData: ChangeCoin(result: 0),
+            initialData: ChangeCoin(result: "0"),
             builder: (context,snapshot )
             {
               return TextField(         
@@ -179,7 +178,7 @@ class _MoneyField extends State<MoneyField>
                       fontSize: 20.0,
                   ),
                   keyboardType: TextInputType.number,
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.center,
                   textDirection: TextDirection.ltr,
                   decoration: InputDecoration(
                     counterText: "",
@@ -202,6 +201,7 @@ class _MoneyField extends State<MoneyField>
 
   Widget _selectCoin(int x)
   {
+
     return Container(
             alignment:Alignment.topLeft,
             color: Colors.blue,
@@ -279,7 +279,8 @@ class _MoneyField extends State<MoneyField>
           else
           {
             debugPrint("si");
-            _showDialog("Alert","Select Coin!");
+            _util.ToastOn("You must to select the coin to convert!");
+            
             
           }
         },
@@ -287,20 +288,7 @@ class _MoneyField extends State<MoneyField>
     );
   }
 
-  void _showDialog(String title,String body)
-  {
-    debugPrint(title+body);
-    showDialog(
-      context:context,
-      builder: (BuildContext ctx)
-      {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(body)
-        );
-      }
-    );
-  }
+ 
 
   
 

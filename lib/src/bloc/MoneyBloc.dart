@@ -27,6 +27,12 @@ class MoneyBloc
   {
     
     cc.result = await _util.GetChange(cc);
-   _output.add(cc);
+   
+    if(cc.result == "")
+    {
+      _util.ToastOn("Please check your connection Internet!");
+
+    }
+    _output.add(cc);
   }
 }
