@@ -1,5 +1,6 @@
 class Money
 {
-  String country ;
-  Money({this.country});
+  String id ;
+  String name;
+  Money({this.id});
 }

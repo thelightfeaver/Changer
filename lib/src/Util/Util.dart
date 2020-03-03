@@ -14,7 +14,7 @@ class Util{
   Future<String> GetChange(ChangeCoin cc)
   async 
   {
-    var data = cc.fromCoin.country+"_"+cc.toCoin.country;
+    var data = cc.fromCoin.id+"_"+cc.toCoin.id;
    
     String queryapi = "https://free.currconv.com/api/v7/convert?q="+data+"&compact=ultra&apiKey=2917fb8b760e21b26285";
     final rep = await http.get(queryapi);
